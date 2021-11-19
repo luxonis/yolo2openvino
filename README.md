@@ -2,7 +2,7 @@
 
 [![GitHub](https://img.shields.io/github/license/luxonis/depthai-model-zoo?color=blue&style=flat-square&label=LICENSE)](https://github.com/luxonis/yolo2openvino/blob/main/LICENSE)  [![stars](https://img.shields.io/github/stars/luxonis?affiliations=OWNER&label=LUXONIS%20STARS&style=flat-square)](https://github.com/luxonis)  [![web-interface](https://img.shields.io/static/v1?label=MORE&message=TUTORIALS&color=orange&style=flat-square)](https://github.com/luxonis/depthai-ml-training/)
 
-![Logo](https://user-images.githubusercontent.com/56075061/142616479-21d72131-c15e-431b-9e3d-0fda03f468a2.png)
+![Logo](https://user-images.githubusercontent.com/56075061/142620908-580e2e06-eeb8-4222-a55f-b428cf76bd3d.png)
 
 This repository contains implementation of YoloV3 and YoloV4 object detectors in Tensorflow. Repository is based on code from [mystic123/tensorflow-yolo-v3](https://github.com/mystic123/tensorflow-yolo-v3) ([`Apache License 2.0`](https://github.com/mystic123/tensorflow-yolo-v3/blob/master/LICENSE)) and [TNTWEN/OpenVINO-YOLOV4](https://github.com/TNTWEN/OpenVINO-YOLOV4) ([`MIT License`](https://github.com/TNTWEN/OpenVINO-YOLOV4/blob/master/LICENSE)).
 
