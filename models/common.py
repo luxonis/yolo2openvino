@@ -1,3 +1,6 @@
+import tensorflow as tf
+from tensorflow.contrib import slim
+
 def _conv2d_fixed_padding(inputs, filters, kernel_size, strides=1):
     if strides > 1:
         inputs = _fixed_padding(inputs, kernel_size)

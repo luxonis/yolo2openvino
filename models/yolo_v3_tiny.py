@@ -7,17 +7,14 @@ _BATCH_NORM_DECAY = 0.9
 _BATCH_NORM_EPSILON = 1e-05
 _LEAKY_RELU = 0.1
 
-_ANCHORS = [(10, 14),  (23, 27),  (37, 58),
-            (81, 82),  (135, 169),  (344, 319)]
-
-
-def yolo_v3_tiny(inputs, num_classes, is_training=False, data_format='NCHW', reuse=False):
+def yolo_v3_tiny(inputs, num_classes, anchors, is_training=False, data_format='NCHW', reuse=False):
     """
     Creates YOLO v3 tiny model.
 
     :param inputs: a 4-D tensor of size [batch_size, height, width, channels].
         Dimension batch_size may be undefined. The channel order is RGB.
     :param num_classes: number of predicted classes.
+    :param num_classes: anchors.
     :param is_training: whether is training or not.
     :param data_format: data format NCHW or NHWC.
     :param reuse: whether or not the network and its variables should be reused.
@@ -74,7 +71,7 @@ def yolo_v3_tiny(inputs, num_classes, is_training=False, data_format='NCHW', reu
                     # inputs = _conv2d_fixed_padding(inputs, 255, 1)
 
                     detect_1 = _detection_layer(
-                        inputs, num_classes, _ANCHORS[3:6], img_size, data_format)
+                        inputs, num_classes, anchors[3:6], img_size, data_format)
                     detect_1 = tf.identity(detect_1, name='detect_1')
 
                     inputs = _conv2d_fixed_padding(route_2, 128, 1)
@@ -88,7 +85,7 @@ def yolo_v3_tiny(inputs, num_classes, is_training=False, data_format='NCHW', reu
                     # inputs = _conv2d_fixed_padding(inputs, 255, 1)
 
                     detect_2 = _detection_layer(
-                        inputs, num_classes, _ANCHORS[0:3], img_size, data_format)
+                        inputs, num_classes, anchors[0:3], img_size, data_format)
                     detect_2 = tf.identity(detect_2, name='detect_2')
 
                     detections = tf.concat([detect_1, detect_2], axis=1)

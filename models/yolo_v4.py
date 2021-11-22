@@ -8,10 +8,6 @@ _BATCH_NORM_DECAY = 0.9
 _BATCH_NORM_EPSILON = 1e-05
 _LEAKY_RELU = 0.1
 
-_ANCHORS = [(12, 16), (19, 36), (40, 28),
-            (36, 75), (76, 55), (72, 146),
-            (142, 110), (192, 243), (459, 401)]
-
 
 def _yolo_res_Block(inputs,in_channels,res_num,data_format,double_ch=False):
     out_channels = in_channels
@@ -112,13 +108,14 @@ def csp_darknet53(inputs,data_format,batch_norm_params):
     return route_1, route_2, route_3
 
 
-def yolo_v4(inputs, num_classes, is_training=False, data_format='NCHW', reuse=False):
+def yolo_v4(inputs, num_classes, anchors, is_training=False, data_format='NCHW', reuse=False):
     """
     Creates YOLO v4 model.
 
     :param inputs: a 4-D tensor of size [batch_size, height, width, channels].
         Dimension batch_size may be undefined. The channel order is RGB.
     :param num_classes: number of predicted classes.
+    :param num_classes: anchors.
     :param is_training: whether is training or not.
     :param data_format: data format NCHW or NHWC.
     :param reuse: whether or not the network and its variables should be reused.
@@ -161,7 +158,7 @@ def yolo_v4(inputs, num_classes, is_training=False, data_format='NCHW', reuse=Fa
                 #features of y1
                 net = _conv2d_fixed_padding(route_1,256,kernel_size=3)
                 detect_1 = _detection_layer(
-                    net, num_classes, _ANCHORS[0:3], img_size, data_format)
+                    net, num_classes, anchors[0:3], img_size, data_format)
                 detect_1 = tf.identity(detect_1, name='detect_1')
 
                 #features of y2
@@ -171,7 +168,7 @@ def yolo_v4(inputs, num_classes, is_training=False, data_format='NCHW', reuse=Fa
                 route_147 =net
                 net = _conv2d_fixed_padding(net,512,kernel_size=3)
                 detect_2 = _detection_layer(
-                    net, num_classes, _ANCHORS[3:6], img_size, data_format)
+                    net, num_classes, anchors[3:6], img_size, data_format)
                 detect_2 = tf.identity(detect_2, name='detect_2')
 
                 # features of  y3
@@ -179,7 +176,7 @@ def yolo_v4(inputs, num_classes, is_training=False, data_format='NCHW', reuse=Fa
                 net = tf.concat([net, route_3], axis=1 if data_format == 'NCHW' else 3)
                 net = _yolo_conv_block(net,1024,3,0)
                 detect_3 = _detection_layer(
-                    net, num_classes, _ANCHORS[6:9], img_size, data_format)
+                    net, num_classes, anchors[6:9], img_size, data_format)
                 detect_3 = tf.identity(detect_3, name='detect_3')
 
                 detections = tf.concat([detect_1, detect_2, detect_3], axis=1)
