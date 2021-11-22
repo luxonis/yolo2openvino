@@ -57,14 +57,14 @@ python convert_weights_pb.py \
 2. Conversion of YoloV4-tiny model with custom input shapes and anchors (model trained with [`yolov4-tiny-custom.cfg`](https://github.com/AlexeyAB/darknet/blob/master/cfg/yolov4-tiny-custom.cfg)):
 ```python
 python convert_weights_pb.py \
---yolo 4 \ 
+--yolo 4 \
 --weights_file yolov4-tiny_best.weights \
 --class_names obj.names \
 --output yolov4tiny.pb \
 --tiny \
 -h 320 \
 -w 512 \
--a 10,14,23,27,37,58,81,82,135,169,344,319 \
+-a 10,14,23,27,37,58,81,82,135,169,344,319
 ```
 
 #### Anchors
