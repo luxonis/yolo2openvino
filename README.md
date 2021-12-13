@@ -159,9 +159,10 @@ If you cannot find a solution for your problem, please open a new issue here on 
 Tested on:
 
 ```
-Python 3.8
-Tensorflow 1.14.0.
+Python 3.7
+Tensorflow 1.14.0
 Numpy 1.16.6
 OpenVINO 2021.3
+Pillow
 ```
 
