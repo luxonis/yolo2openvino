@@ -1,3 +1,5 @@
+**Deprecation notice**: This project is deprecated and not maintained, but can still be used locally with TensorFlow V1. We recommend switching to a newer version of Yolo (v5-v8). You can see our training and export tutorials [here](https://github.com/luxonis/depthai-ml-training/tree/master/colab-notebooks).
+
 # Yolo2OpenVINO
 
 [![GitHub](https://img.shields.io/github/license/luxonis/depthai-model-zoo?color=blue&style=flat-square&label=LICENSE)](https://github.com/luxonis/yolo2openvino/blob/main/LICENSE)  [![stars](https://img.shields.io/github/stars/luxonis?affiliations=OWNER&label=LUXONIS%20STARS&style=flat-square)](https://github.com/luxonis)  [![web-interface](https://img.shields.io/static/v1?label=MORE&message=TUTORIALS&color=orange&style=flat-square)](https://github.com/luxonis/depthai-ml-training/)
